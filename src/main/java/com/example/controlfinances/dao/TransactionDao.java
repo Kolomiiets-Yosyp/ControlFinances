@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TransactionDao {
     // Збереження нової транзакції
-    void saveTransaction(Transaction transaction);
+    Transaction saveTransaction(Transaction transaction);
 
     // Отримання транзакції за її ідентифікатором
     Transaction getTransactionById(Long id);
@@ -17,8 +17,10 @@ public interface TransactionDao {
     // Отримання списку всіх транзакцій для категорії за її ідентифікатором
     List<Transaction> getTransactionsByCategoryId(Long categoryId);
 
+    List<Transaction> getAllTransactions();
+
     // Оновлення існуючої транзакції
-    void updateTransaction(Transaction transaction);
+    Transaction updateTransaction(Transaction transaction);
 
     // Видалення транзакції за її ідентифікатором
     void deleteTransactionById(Long id);

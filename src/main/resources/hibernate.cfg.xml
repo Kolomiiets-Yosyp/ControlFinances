@@ -8,10 +8,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Finance?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456789</property>
-
         <!-- Додаткові налаштування Hibernate -->
-        <!-- ... -->
-
         <!-- Включення анотацій для сутнісних класів -->
         <mapping class="com.example.controlfinances.models.User"/>
         <mapping class="com.example.controlfinances.models.Category"/>

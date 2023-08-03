@@ -12,13 +12,8 @@ public class ControlFinancesApplication {
     public static void main(String[] args) {
         SpringApplication.run(ControlFinancesApplication.class, args);
         UserService userService = new UserService();
+        System.out.printf(userService.getAllUsers().toString());
 
-        User user = new User();
-        user.setId(3L);
-        user.setUsername("username");
-        user.setPassword("password");
-        System.out.printf(user.toString());
-        userService.saveUser(user);
         HibernateUtil.shutdown();
     }
 
