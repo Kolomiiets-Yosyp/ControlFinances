@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import org.hibernate.service.Service;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 
 import java.util.List;
@@ -13,6 +14,12 @@ import java.util.List;
 public class UserService extends SessionUtil implements UserDao {
     @Override
     public User saveUser(User user) {
+        openTransactionSession();
+
+        Session session = getSession();
+        session.save(user);
+
+        closeTransactionSession();
 
         return null;
     }
