@@ -14,9 +14,6 @@ public interface TransactionDao {
     // Отримання списку всіх транзакцій для користувача за його ідентифікатором
     List<Transaction> getTransactionsByUserId(Long userId);
 
-    // Отримання списку всіх транзакцій для категорії за її ідентифікатором
-    List<Transaction> getTransactionsByCategoryId(Long categoryId);
-
     List<Transaction> getAllTransactions();
 
     // Оновлення існуючої транзакції

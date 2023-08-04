@@ -9,50 +9,60 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class TransactionService extends SessionUtil implements TransactionDao {
-
     @Override
     public Transaction saveTransaction(Transaction transaction) {
-        openTransactionSession();
-
-        Session session = getSession();
-        session.save(transaction);
-
-        closeTransactionSession();
-
-        return transaction;
-    }
-
-    @Override
-    public Transaction getTransactionById(Long id) {
         Session session = openSession();
         try {
-            String hql = "SELECT * FROM transactions WHERE id = :id";
-            Query<Transaction> query = session.createNativeQuery(hql, Transaction.class);
-            query.setParameter("id", id);
-
-            Transaction transaction = query.uniqueResult();
+            session.getTransaction().begin();
+            session.save(transaction);
+            session.getTransaction().commit();
             return transaction;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return null;
         } finally {
             session.close();
         }
     }
 
-    @Override
-    public List<Transaction> getTransactionsByUserId(Long userId) {
-        return null;
-    }
+        // Попередні методи (saveTransaction, updateTransaction, deleteTransactionById) залишаються незмінними
 
-    @Override
-    public List<Transaction> getTransactionsByCategoryId(Long categoryId) {
-        return null;
-    }
+        @Override
+        public Transaction getTransactionById(Long id) {
+            Session session = openSession();
+            try {
+                String hql = "FROM transactions WHERE id = :id";
+                Query<Transaction> query = session.createQuery(hql, Transaction.class);
+                query.setParameter("id", id);
+
+                Transaction transaction = query.uniqueResult();
+                return transaction;
+            } finally {
+                session.close();
+            }
+        }
+
+        @Override
+        public List<Transaction> getTransactionsByUserId(Long user_id) {
+            Session session = openSession();
+            try {
+                String hql = "FROM transactions WHERE id= :user_id";
+                Query<Transaction> query = session.createQuery(hql, Transaction.class);
+                query.setParameter("userId", user_id);
+
+                List<Transaction> transactions = query.list();
+                return transactions;
+            } finally {
+                session.close();
+            }
+        }
 
     @Override
     public List<Transaction> getAllTransactions() {
         Session session = openSession();
         try {
-            String hql = "SELECT * FROM transactions";
-            Query<Transaction> query = session.createNativeQuery(hql, Transaction.class);
+            String hql = "FROM transactions";
+            Query<Transaction> query = session.createQuery(hql, Transaction.class);
             List<Transaction> transactionList = query.list();
             return transactionList;
         } finally {
@@ -92,4 +102,5 @@ public class TransactionService extends SessionUtil implements TransactionDao {
             session.close();
         }
     }
+
 }
