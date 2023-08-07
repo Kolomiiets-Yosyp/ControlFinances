@@ -1,18 +1,29 @@
 package com.example.controlfinances.service;
 import com.example.controlfinances.dao.UserDao;
 import com.example.controlfinances.models.User;
+import com.example.controlfinances.util.HibernateUtil;
 import com.example.controlfinances.util.SessionUtil;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import com.example.controlfinances.models.User;
+
 import org.hibernate.query.Query;
-import org.hibernate.service.Service;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
-
+import java.util.Optional;
+@Repository
+@Transactional
 public class UserService extends SessionUtil implements UserDao {
+
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
     public User saveUser(User user) {
         openTransactionSession();
@@ -22,8 +33,10 @@ public class UserService extends SessionUtil implements UserDao {
 
         closeTransactionSession();
 
-        return null;
+        return user;
     }
+
+
 
     @Override
     public User getUserById(Long id) {
@@ -43,7 +56,7 @@ public class UserService extends SessionUtil implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        Session session = openSession();
+        Session session = null;
         try {
             String hql = "SELECT * FROM users WHERE username = :username";
             Query<User> query = session.createNativeQuery(hql, User.class);
@@ -58,16 +71,10 @@ public class UserService extends SessionUtil implements UserDao {
 
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
-        Session session = openSession();
-        try {
-            String hql = "SELECT * FROM users";
-            Query<User> query = session.createNativeQuery(hql, User.class);
-            List<User> userList = query.list();
-            return userList;
-        } finally {
-            session.close();
-        }
+        String hql = "SELECT u FROM users u";
+        return entityManager.createQuery(hql, User.class).getResultList();
     }
 
     @Override

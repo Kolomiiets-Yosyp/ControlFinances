@@ -3,6 +3,7 @@ package com.example.controlfinances.dao;
 import com.example.controlfinances.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao {
     // Збереження нового користувача

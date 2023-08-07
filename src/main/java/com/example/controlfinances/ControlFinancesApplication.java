@@ -12,9 +12,7 @@ public class ControlFinancesApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ControlFinancesApplication.class, args);
-        TransactionService transactionService = new TransactionService();
-        System.out.printf(transactionService.getTransactionById(1l).toString());
-        HibernateUtil.shutdown();
+
     }
 
 }
