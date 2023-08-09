@@ -1,6 +1,7 @@
 package com.example.controlfinances.dao;
 
 import com.example.controlfinances.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;

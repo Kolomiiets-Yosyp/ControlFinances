@@ -2,7 +2,6 @@ package com.example.controlfinances.service;
 
 import com.example.controlfinances.dao.TransactionDao;
 import com.example.controlfinances.models.Transaction;
-import com.example.controlfinances.util.SessionUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -25,37 +24,37 @@ public class TransactionService extends SessionUtil implements TransactionDao {
         }
     }
 
-        // Попередні методи (saveTransaction, updateTransaction, deleteTransactionById) залишаються незмінними
+    // Попередні методи (saveTransaction, updateTransaction, deleteTransactionById) залишаються незмінними
 
-        @Override
-        public Transaction getTransactionById(Long id) {
-            Session session = openSession();
-            try {
-                String hql = "FROM transactions WHERE id = :id";
-                Query<Transaction> query = session.createQuery(hql, Transaction.class);
-                query.setParameter("id", id);
+    @Override
+    public Transaction getTransactionById(Long id) {
+        Session session = openSession();
+        try {
+            String hql = "FROM transactions WHERE id = :id";
+            Query<Transaction> query = session.createQuery(hql, Transaction.class);
+            query.setParameter("id", id);
 
-                Transaction transaction = query.uniqueResult();
-                return transaction;
-            } finally {
-                session.close();
-            }
+            Transaction transaction = query.uniqueResult();
+            return transaction;
+        } finally {
+            session.close();
         }
+    }
 
-        @Override
-        public List<Transaction> getTransactionsByUserId(Long user_id) {
-            Session session = openSession();
-            try {
-                String hql = "FROM transactions WHERE id= :user_id";
-                Query<Transaction> query = session.createQuery(hql, Transaction.class);
-                query.setParameter("userId", user_id);
+    @Override
+    public List<Transaction> getTransactionsByUserId(Long user_id) {
+        Session session = openSession();
+        try {
+            String hql = "FROM transactions WHERE id= :user_id";
+            Query<Transaction> query = session.createQuery(hql, Transaction.class);
+            query.setParameter("userId", user_id);
 
-                List<Transaction> transactions = query.list();
-                return transactions;
-            } finally {
-                session.close();
-            }
+            List<Transaction> transactions = query.list();
+            return transactions;
+        } finally {
+            session.close();
         }
+    }
 
     @Override
     public List<Transaction> getAllTransactions() {

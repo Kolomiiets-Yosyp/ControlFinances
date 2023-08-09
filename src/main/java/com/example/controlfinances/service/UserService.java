@@ -1,22 +1,18 @@
 package com.example.controlfinances.service;
+
 import com.example.controlfinances.dao.UserDao;
 import com.example.controlfinances.models.User;
-import com.example.controlfinances.util.HibernateUtil;
-import com.example.controlfinances.util.SessionUtil;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
-import java.util.Optional;
+
 @Repository
 @Transactional
 public class UserService extends SessionUtil implements UserDao {
@@ -35,7 +31,6 @@ public class UserService extends SessionUtil implements UserDao {
 
         return user;
     }
-
 
 
     @Override

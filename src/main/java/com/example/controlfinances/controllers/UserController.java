@@ -1,7 +1,7 @@
 package com.example.controlfinances.controllers;
 
+import com.example.controlfinances.dao.imp.UserDaoImpl;
 import com.example.controlfinances.models.User;
-import com.example.controlfinances.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +12,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private  UserService userService;
+    private UserDaoImpl userDaoImpl;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserDaoImpl userDao) {
+        this.userDaoImpl = userDao;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+        User user = userDaoImpl.getUserById(id);
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
@@ -29,17 +29,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.saveUser(user);
+        User savedUser = userDaoImpl.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-
-            return new ResponseEntity<>(users, HttpStatus.OK);
-
+        List<User> users = userDaoImpl.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    // Інші методи обробки запитів для User, наприклад, оновлення користувача, отримання всіх користувачів тощо.
+    // Додайте інші методи для оновлення, видалення тощо
 }

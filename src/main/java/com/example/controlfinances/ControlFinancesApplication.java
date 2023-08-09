@@ -1,9 +1,6 @@
 package com.example.controlfinances;
 
-import com.example.controlfinances.models.User;
-import com.example.controlfinances.service.TransactionService;
-import com.example.controlfinances.service.UserService;
-import com.example.controlfinances.util.HibernateUtil;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,7 +9,6 @@ public class ControlFinancesApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ControlFinancesApplication.class, args);
-
     }
 
 }
