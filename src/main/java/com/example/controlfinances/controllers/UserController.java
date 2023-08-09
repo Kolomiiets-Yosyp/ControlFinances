@@ -14,8 +14,8 @@ public class UserController {
 
     private UserDaoImpl userDaoImpl;
 
-    public UserController(UserDaoImpl userDao) {
-        this.userDaoImpl = userDao;
+    public UserController(UserDaoImpl userDaoImpl) {
+        this.userDaoImpl = userDaoImpl;
     }
 
     @GetMapping("/{id}")

@@ -1,5 +1,7 @@
 package com.example.controlfinances.dao;
+
 import com.example.controlfinances.models.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
