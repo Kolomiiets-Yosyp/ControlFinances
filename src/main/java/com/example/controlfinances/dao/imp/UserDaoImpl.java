@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User saveUser(User user) {
-       
+
         return null;
     }
 
@@ -29,8 +29,9 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
+    @Transactional
     public User getUserByUsername(String username) {
-        return null;
+        return entityManager.find(User.class, username);
     }
 
     @Override
