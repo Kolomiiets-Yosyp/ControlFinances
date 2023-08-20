@@ -4,15 +4,23 @@ import com.example.controlfinances.dao.imp.UserDaoImpl;
 import com.example.controlfinances.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+@Controller
 public class UserController {
 
     private UserDaoImpl userDaoImpl;
+
+    @GetMapping("/home")
+    public String homePage() {
+        return "home.html"; // Повертаємо ім'я HTML файлу без розширення
+    }
+
 
     public UserController(UserDaoImpl userDaoImpl) {
         this.userDaoImpl = userDaoImpl;
@@ -28,9 +36,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userDaoImpl.saveUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    public String createUser(@RequestParam String name, @RequestParam String password, @RequestBody User user) {
+        User user1 = new User(name, password);
+        userDaoImpl.saveUser(user1);
+        return "redirect:/all";
     }
 
     @GetMapping("/all")

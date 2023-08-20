@@ -13,5 +13,6 @@
         <mapping class="com.example.controlfinances.models.User"/>
         <mapping class="com.example.controlfinances.models.Category"/>
         <mapping class="com.example.controlfinances.models.Transaction"/>
+        <mapping class="com.example.controlfinances.models.Role"/>
     </session-factory>
 </hibernate-configuration>
