@@ -1,7 +1,9 @@
 package com.example.controlfinances.controllers;
 
 import com.example.controlfinances.dao.imp.UserDaoImpl;
+import com.example.controlfinances.dao.imp.UserRoleDaoImpl;
 import com.example.controlfinances.models.User;
+import com.example.controlfinances.models.UserRole;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import java.util.List;
 public class UserController {
 
     private UserDaoImpl userDaoImpl;
+    private UserRoleDaoImpl userRoleDaoImpl;
 
     @GetMapping("/home")
     public String homePage() {
@@ -35,12 +38,14 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
-    public String createUser(@RequestParam String name, @RequestParam String password, @RequestBody User user) {
-        User user1 = new User(name, password);
-        userDaoImpl.saveUser(user1);
+    @PostMapping("/create")
+    public String createUser(@RequestParam String name, @RequestParam String password) {
+        User user = new User(name, password);
+        userDaoImpl.saveUser(user);
+        System.out.println(user);
         return "redirect:/all";
     }
+
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {

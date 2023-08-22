@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserDao {
     // Збереження нового користувача
-    User saveUser(User user);
+    void saveUser(User user);
 
     // Отримання користувача за його ідентифікатором
     User getUserById(Long id);

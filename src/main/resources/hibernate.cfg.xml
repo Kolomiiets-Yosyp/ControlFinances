@@ -14,5 +14,7 @@
         <mapping class="com.example.controlfinances.models.Category"/>
         <mapping class="com.example.controlfinances.models.Transaction"/>
         <mapping class="com.example.controlfinances.models.Role"/>
+        <mapping class="com.example.controlfinances.models.UserRole"/>
+
     </session-factory>
 </hibernate-configuration>

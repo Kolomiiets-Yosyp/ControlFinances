@@ -2,6 +2,8 @@ package com.example.controlfinances.dao.imp;
 
 import com.example.controlfinances.dao.UserDao;
 import com.example.controlfinances.models.User;
+import com.example.controlfinances.models.Role;
+import com.example.controlfinances.models.UserRole;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -16,10 +18,15 @@ public class UserDaoImpl implements UserDao {
     EntityManager entityManager;
 
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
+        // Збереження користувача
         entityManager.persist(user);
-        return user;
+
+        // Створення запису в таблиці user_roles для надання ролі "user"
+        UserRole userRole = new UserRole(user.getId(), 2L); // 2L - ID ролі "user"
+        entityManager.persist(userRole);
     }
+
 
     @Override
     @Transactional
