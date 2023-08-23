@@ -1,6 +1,7 @@
 package com.example.controlfinances.dao.imp;
 
 import com.example.controlfinances.dao.UserDao;
+import com.example.controlfinances.models.Transaction;
 import com.example.controlfinances.models.User;
 import com.example.controlfinances.models.Role;
 import com.example.controlfinances.models.UserRole;
@@ -56,6 +57,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUserById(Long id) {
-
+        User user = entityManager.find(User.class, id);
+        if (user != null) {
+            entityManager.remove(user);
+        }
     }
+
 }
