@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class UserController {
 
     private UserDaoImpl userDaoImpl;
     private UserRoleDaoImpl userRoleDaoImpl;
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/home")
     public String homePage() {
@@ -40,8 +38,7 @@ public class UserController {
 
     @PostMapping("/create")
     public String createUser(@RequestParam String name, @RequestParam String password) {
-        String encodedPassword = passwordEncoder.encode(password);
-        User user = new User(name, encodedPassword);
+        User user = new User(name, password);
         userDaoImpl.saveUser(user);
         System.out.println(user);
         return "redirect:/login"; // Перенаправлення на сторінку входу
@@ -55,14 +52,7 @@ public class UserController {
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model) {
         User user = userDaoImpl.getUserByUsername(username);
-
-        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            // Користувач аутентифікований, ви можете здійснити додаткові дії тут
-            return "redirect:/home"; // Перенаправлення на домашню сторінку
-        } else {
-            model.addAttribute("error", "Невірний логін або пароль");
-            return "login"; // Вертаємо сторінку логінації з помилкою
-        }
+        return user.toString();
     }
 
     @DeleteMapping("/delete/{id}")
