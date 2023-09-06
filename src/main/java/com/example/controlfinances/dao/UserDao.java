@@ -16,6 +16,9 @@ public interface UserDao {
     // Отримання користувача за його іменем
     User getUserByUsername(String username);
 
+    // Отримання користувача за його паролем
+    User getUserPassword(String password);
+
     // Отримання списку всіх користувачів
     List<User> getAllUsers();
 

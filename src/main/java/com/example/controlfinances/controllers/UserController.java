@@ -17,11 +17,6 @@ public class UserController {
     private UserDaoImpl userDaoImpl;
     private UserRoleDaoImpl userRoleDaoImpl;
 
-    @GetMapping("/home")
-    public String homePage() {
-        return "home.html"; // Повертаємо ім'я HTML файлу без розширення
-    }
-
 
     public UserController(UserDaoImpl userDaoImpl) {
         this.userDaoImpl = userDaoImpl;
@@ -33,26 +28,34 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+     
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/create")
-    public String createUser(@RequestParam String name, @RequestParam String password) {
-        User user = new User(name, password);
+    public String createUser(@RequestParam String name,
+                             @RequestParam String password,
+                             @RequestParam(required = false, defaultValue = "0") long balance) {
+        User existingUser = userDaoImpl.getUserByUsername(name);
+        if (existingUser != null) {
+            return "redirect:create";
+        }
+        User user = new User(name, password, balance);
         userDaoImpl.saveUser(user);
         System.out.println(user);
-        return "redirect:/login"; // Перенаправлення на сторінку входу
+        return "redirect:/login";
+        // Перенаправлення на сторінку входу
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login"; // Вертаємо ім'я HTML файлу без розширення
-    }
+//    @GetMapping("/login")
+//    public String loginPage() {
+//        return "login"; // Вертаємо ім'я HTML файлу без розширення
+//    }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
-        User user = userDaoImpl.getUserByUsername(username);
-        return user.toString();
+    public String login(@RequestParam String username, @RequestParam String password) {
+
+        return "login";
     }
 
     @DeleteMapping("/delete/{id}")

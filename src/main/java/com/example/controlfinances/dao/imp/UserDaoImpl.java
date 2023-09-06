@@ -44,6 +44,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @Transactional
+    public User getUserPassword(String username) {
+        return entityManager.find(User.class, username);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         String sql = "SELECT * from users";
         return entityManager.createNativeQuery(sql, User.class).getResultList();

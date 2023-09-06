@@ -1,23 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Control finance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .balance {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h2>Login</h2>
 <div class="container">
-    <div class="auth-form">
-        <h2>Login</h2>
-        <form id="login-form">
-            <input type="text" id="login-username" placeholder="Username" required>
-            <input type="password" id="login-password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    <h1>Control finance</h1>
+    <p class="balance">Balance: <span id="balance"></span> usd</p>
+    <button onclick="addMoney()">ADD</button>
+    <button onclick="subtractMoney()">Take away</button>
+    <button onclick="editMoney()">Edit</button>
 </div>
-<script src="/js/script.js"></script>
+
+<script>
+    function addMoney() {
+        // Додавання логіки для додавання коштів користувачу
+    }
+
+    function subtractMoney() {
+        // Додавання логіки для віднімання коштів користувачу
+    }
+
+    function editMoney() {
+        // Додавання логіки для редагування коштів користувачу
+    }
+</script>
 </body>
-
 </html>
-

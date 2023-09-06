@@ -27,9 +27,13 @@ public class User {
     @Size(min = 6, message = "The password must contain at least 5 characters")
     private String password;
 
-    public User(String username, String password) {
+    @Column(name = "balance")
+    private long balance;
+
+    public User(String username, String password, long balance) {
         this.username = username;
         this.password = password;
+        this.balance = balance;
     }
 
     @ManyToMany
