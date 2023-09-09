@@ -1,10 +1,9 @@
 package com.example.controlfinances.dao;
 
 import com.example.controlfinances.models.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserDao {
     // Збереження нового користувача
@@ -18,6 +17,8 @@ public interface UserDao {
 
     // Отримання користувача за його паролем
     User getUserPassword(String password);
+
+    Long getUserBalance(Long id);
 
     // Отримання списку всіх користувачів
     List<User> getAllUsers();

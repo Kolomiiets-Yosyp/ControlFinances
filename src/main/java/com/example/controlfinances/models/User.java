@@ -28,12 +28,17 @@ public class User {
     private String password;
 
     @Column(name = "balance")
-    private long balance;
+    private Long balance;
 
     public User(String username, String password, long balance) {
         this.username = username;
         this.password = password;
         this.balance = balance;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     @ManyToMany

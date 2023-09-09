@@ -1,0 +1,28 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="auth-container"> <!-- Окремий контейнер для форми -->
+        <div class="auth-form" id="register-form">
+            <h2>Register</h2>
+            <form action="/create" method="post">
+                <input type="text" name="name" id="register-username" placeholder="Username" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span id="password-error" class="error-message"></span>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="switch-button">
+            <a href="/login">Switch to Login</a>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

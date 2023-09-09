@@ -1,69 +1,28 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Control finance</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-
-        .container {
-            margin: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .balance {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 5px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Control finance</h1>
-    <p class="balance">Balance: <span id="balance"></span> usd</p>
-    <button onclick="addMoney()">ADD</button>
-    <button onclick="subtractMoney()">Take away</button>
-    <button onclick="editMoney()">Edit</button>
+    <div class="auth-container"> <!-- Окремий контейнер для форми -->
+        <div class="auth-form" id="login-form">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <input type="text" name="name" id="userName" placeholder="userName" required>
+                <input type="password" name="password" id="userPassword" placeholder="userPassword" required>
+                <span id="error-message" class="error-message"></span>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="switch-button">
+            <a href="/create">Switch to Register</a>
+        </div>
+    </div>
 </div>
 
-<script>
-    function addMoney() {
-        // Додавання логіки для додавання коштів користувачу
-    }
-
-    function subtractMoney() {
-        // Додавання логіки для віднімання коштів користувачу
-    }
-
-    function editMoney() {
-        // Додавання логіки для редагування коштів користувачу
-    }
-</script>
+<script src="/js/script.js"></script>
 </body>
 </html>

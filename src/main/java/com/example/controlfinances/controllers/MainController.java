@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class MainController {
-    @GetMapping("/home")
-    public String homePage() {
-        return "home"; // Повертаємо ім'я HTML файлу без розширення
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // Повертаємо ім'я HTML файлу без розширення
     }
 
 

@@ -1,19 +1,38 @@
+/* style.css */
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 0 20px; /* Додайте відступи з обох боків */
+    height: 100vh; /* Додали висоту для повного центрування на всю висоту екрану */
 }
 
 .auth-form {
-    width: 45%; /* Змініть ширину форм за бажанням */
+    width: 100%;
+    padding: 5%;
+    background-color: #f4f4f4;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 10px;
+    text-align: center;
 }
 
-#toggle-form-button {
-    width: 10%; /* Змініть ширину кнопки за бажанням */
+.switch-button {
+    text-align: center;
+    margin-top: 20px;
 }
 
+.switch-button a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.switch-button a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
 
 .error-message {
     color: red;
@@ -22,11 +41,10 @@
 
 .auth-form h2 {
     margin-top: 0;
-    text-align: center;
 }
 
 .auth-form input {
-    width: 100%;
+    width: 94%;
     padding: 10px;
     margin-bottom: 10px;
 }
