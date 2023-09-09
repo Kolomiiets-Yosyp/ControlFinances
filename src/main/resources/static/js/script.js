@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
             passwordError.textContent = "";
         }
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        const errorMessageElement = document.getElementById("errorMessage");
+
+        // Отримуємо повідомлення про помилку з моделі, якщо воно існує
+        const errorMessage = errorMessageElement.textContent.trim();
+
+        // Перевіряємо, чи є повідомлення про помилку та виводимо його
+        if (errorMessage) {
+            errorMessageElement.style.display = "block"; // Показуємо повідомлення
+        }
+    });
 
     // Залиште решту вашого JavaScript-коду, як є
 });

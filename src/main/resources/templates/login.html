@@ -11,9 +11,10 @@
         <div class="auth-form" id="login-form">
             <h2>Login</h2>
             <form action="/login" method="post">
-                <input type="text" name="name" id="userName" placeholder="userName" required>
-                <input type="password" name="password" id="userPassword" placeholder="userPassword" required>
-                <span id="error-message" class="error-message"></span>
+                <input type="text" name="userName" id="userName" placeholder="Username" required>
+                <input type="password" name="userPassword" id="userPassword" placeholder="Password" required>
+                <span id="errorMessage" class="errorMessage" style="display: none;"></span>
+                <!-- Початково приховуємо повідомлення -->
                 <button type="submit">Login</button>
             </form>
         </div>

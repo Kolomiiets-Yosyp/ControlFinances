@@ -43,6 +43,15 @@
     margin-top: 0;
 }
 
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    display: none; /* Початково приховуємо повідомлення */
+    margin-top: 10px; /* Додайте відступ зверху для відокремлення від інших елементів */
+}
+
+/* ... інші стилі ... */
+
 .auth-form input {
     width: 94%;
     padding: 10px;
