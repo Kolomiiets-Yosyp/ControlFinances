@@ -1,7 +1,6 @@
 package com.example.controlfinances.controllers;
 
 import com.example.controlfinances.dao.imp.UserDaoImpl;
-import com.example.controlfinances.dao.imp.UserRoleDaoImpl;
 import com.example.controlfinances.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,15 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.AttributedString;
 import java.util.List;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
-    private UserDaoImpl userDaoImpl;
-    private UserRoleDaoImpl userRoleDaoImpl;
-    Model model;
+    private final UserDaoImpl userDaoImpl;
 
     public UserController(UserDaoImpl userDaoImpl) {
         this.userDaoImpl = userDaoImpl;
@@ -55,11 +52,6 @@ public class UserController {
         // Перенаправлення на сторінку входу
     }
 
-//    @GetMapping("/login")
-//    public String loginPage() {
-//        return "login"; // Вертаємо ім'я HTML файлу без розширення
-//    }
-
     @PostMapping("/login")
     public String loginUser(
             @RequestParam String userName,
@@ -72,7 +64,7 @@ public class UserController {
             // Додаємо баланс користувача до моделі
             model.addAttribute("userBalance", existingUser.getBalance());
             // Перенаправляємо на сторінку "home"
-            return "redirect:/home"; // Припустимо, що "home" - це URL для сторінки "home"
+            return "home"; // Припустимо, що "home" - це URL для сторінки "home"
         } else {
             // Авторизація не вдалася, показуємо помилкове повідомлення
             String errorMessage = "Невірне ім'я користувача або пароль. Спробуйте ще раз.";
@@ -84,14 +76,13 @@ public class UserController {
         }
     }
 
-
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<User> deleteTransaction(@PathVariable Long id) {
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         userDaoImpl.deleteUserById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userDaoImpl.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
